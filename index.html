@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学昇汇教育 | 北京学昇汇教育科技有限公司 - 学历提升 · 自考 · 成考</title>
+<meta name="description" content="北京学昇汇教育科技有限公司（学昇汇教育）专注学历提升，提供自考、成考等成人学历教育服务。">
+<meta name="keywords" content="学昇汇教育,北京学昇汇教育科技有限公司,学历提升,自考,成考,成人教育">
+<link rel="icon" href="logo.png" type="image/png">
+<style>
+  :root {
+    --primary: #1f4e8c;
+    --primary-dark: #173c6b;
+    --accent: #e8a33d;
+    --text: #2b2f36;
+    --muted: #6b7280;
+    --bg-light: #f6f8fb;
+    --bg-white: #ffffff;
+    --line: #e5e9f0;
+    --shadow: 0 12px 40px rgba(20, 50, 90, 0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--bg-white);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  /* ===== 顶部导航 ===== */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow 0.3s;
+  }
+  .header.scrolled { box-shadow: 0 4px 24px rgba(20, 50, 90, 0.08); }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .logo-text strong { font-size: 20px; color: var(--primary); letter-spacing: 1px; }
+  .logo-text span { font-size: 11px; color: var(--muted); letter-spacing: 2px; }
+  .nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
+  .nav-links a {
+    font-size: 15px;
+    color: #3d4451;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--primary);
+    color: #fff !important;
+    padding: 9px 20px !important;
+    border-radius: 40px;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+  /* ===== Hero ===== */
+  .hero {
+    padding: 150px 0 110px;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(232, 163, 61, 0.12), transparent 55%),
+      radial-gradient(ellipse at 20% 80%, rgba(31, 78, 140, 0.12), transparent 55%),
+      linear-gradient(180deg, #fbfcfe, #f4f7fb);
+  }
+  .hero-inner { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #eef3fa;
+    color: var(--primary);
+    font-size: 13px;
+    padding: 7px 16px;
+    border-radius: 40px;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+  .hero-badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .hero h1 {
+    font-size: 48px;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #1b2430;
+    letter-spacing: 1px;
+  }
+  .hero h1 em { font-style: normal; color: var(--primary); }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-desc {
+    margin-top: 22px;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+  }
+  .hero-actions { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 30px; border-radius: 40px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s; border: none; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(31, 78, 140, 0.35); }
+  .btn-outline { background: #fff; color: var(--primary); border: 1.5px solid #cfd9e8; }
+  .btn-outline:hover { border-color: var(--primary); transform: translateY(-2px); }
+  .hero-stats { margin-top: 46px; display: flex; gap: 48px; }
+  .hero-stats .stat b { display: block; font-size: 28px; color: var(--primary); font-weight: 800; }
+  .hero-stats .stat span { font-size: 13px; color: var(--muted); }
+  .hero-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 34px 32px;
+    border: 1px solid var(--line);
+  }
+  .hero-card h3 { font-size: 20px; color: #1b2430; margin-bottom: 6px; }
+  .hero-card .sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+  .qr-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(20, 50, 90, 0.06);
+  }
+  .qr-box img { width: 100%; max-width: 220px; border-radius: 10px; }
+  .qr-steps { list-style: none; margin-top: 20px; }
+  .qr-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #3d4451;
+    padding: 8px 0;
+  }
+  .qr-steps li span {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #eef3fa;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .qr-steps li b { color: var(--primary); font-weight: 700; }
+  .form-note { font-size: 11px; color: #9aa3b0; text-align: center; margin-top: 14px; }
+  /* ===== 章节通用 ===== */
+  section { padding: 90px 0; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-head .tag { color: var(--accent); font-size: 14px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+  .section-head h2 { font-size: 36px; font-weight: 800; color: #1b2430; margin-top: 10px; letter-spacing: 1px; }
+  .section-head p { color: var(--muted); margin-top: 14px; max-width: 620px; margin-left: auto; margin-right: auto; }
+  /* ===== 业务 ===== */
+  .services { background: var(--bg-light); }
+  .services-grid { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; }
+  .service-card {
+    flex: 1 1 calc(33.333% - 19px);
+    min-width: 280px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 34px 30px;
+    border: 1px solid var(--line);
+    transition: all 0.35s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
+  .service-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eef3fa, #e4ecf8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  .service-card h3 { font-size: 20px; color: #1b2430; margin-bottom: 12px; }
+  .service-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 16px; }
+  .service-card .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .service-card .tags span {
+    font-size: 12px;
+    color: var(--primary);
+    background: #eef3fa;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  /* ===== 优势 ===== */
+  .advantages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .advantage { text-align: center; padding: 30px 20px; border-radius: 16px; transition: background 0.3s; }
+  .advantage:hover { background: var(--bg-light); }
+  .advantage-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), #3a6fb5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #fff;
+  }
+  .advantage h3 { font-size: 17px; color: #1b2430; margin-bottom: 8px; }
+  .advantage p { font-size: 13.5px; color: var(--muted); }
+  /* ===== 流程 ===== */
+  .process { background: linear-gradient(180deg, #fff, #f6f8fb); }
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; }
+  .process-step { text-align: center; position: relative; padding: 0 10px; }
+  .process-num {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+  }
+  .process-step h3 { font-size: 16px; color: #1b2430; margin-bottom: 8px; }
+  .process-step p { font-size: 13px; color: var(--muted); }
+  /* ===== 关于 ===== */
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .about-text .tag { color: var(--accent); font-size: 14px; font-weight: 700; letter-spacing: 3px; }
+  .about-text h2 { font-size: 34px; font-weight: 800; color: #1b2430; margin: 12px 0 18px; }
+  .about-text p { color: var(--muted); margin-bottom: 16px; }
+  .about-points { list-style: none; margin-top: 12px; }
+  .about-points li { padding: 10px 0; display: flex; gap: 12px; align-items: flex-start; color: #3d4451; }
+  .about-points li::before { content: "✓"; color: var(--primary); font-weight: 800; flex-shrink: 0; }
+  .about-visual {
+    background: linear-gradient(135deg, var(--primary), #3a6fb5);
+    border-radius: 20px;
+    padding: 48px 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::after {
+    content: "";
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
+  .about-visual h3 { font-size: 28px; font-weight:800; margin-bottom: 8px; position: relative; z-index: 1; }
+  .about-visual .company { font-size: 14px; opacity: 0.85; margin-bottom: 26px; letter-spacing: 1px; position: relative; z-index: 1; }
+  .about-visual .quote { font-size: 15px; line-height: 1.9; opacity: 0.95; position: relative; z-index: 1; }
+  /* ===== 联系 ===== */
+  .contact { background: var(--bg-light); }
+  .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .contact-card { background: #fff; border-radius: 16px; padding: 34px 30px; text-align: center; border: 1px solid var(--line); transition: all 0.3s; }
+  .contact-card:hover { box-shadow: var(--shadow); border-color: transparent; }
+  .contact-icon { font-size: 32px; margin-bottom: 14px; }
+  .contact-card h3 { font-size: 17px; color: #1b2430; margin-bottom: 8px; }
+  .contact-card p { color: var(--muted); font-size: 14px; }
+  .contact-card .em { color: var(--primary); font-weight: 700; font-size: 16px; }
+  .contact-qr {
+    width: 168px;
+    height: 168px;
+    object-fit: contain;
+    margin: 18px auto 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 8px;
+    background: #fff;
+  }
+  /* ===== 页脚 ===== */
+  .footer { background: #14273d; color: #b8c3d0; padding: 60px 0 30px; }
+  .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+  .footer-brand h3 { color: #fff; font-size: 22px; letter-spacing: 2px; margin-bottom: 12px; }
+  .footer-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 14px;
+  }
+  .footer-brand p { font-size: 13px; color: #8e9dae; max-width: 320px; }
+  .footer h4 { color: #fff; font-size: 15px; margin-bottom: 18px; letter-spacing: 1px; }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: 10px; font-size: 13.5px; }
+  .footer ul li a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding-top: 22px;
+    text-align: center;
+    font-size: 12.5px;
+    color: #7d8b9b;
+  }
+  /* ===== 移动端 ===== */
+  @media (max-width: 960px) {
+    .hero { padding: 120px 0 70px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero h1 { font-size: 36px; }
+    .services-grid, .advantages-grid, .process-grid, .contact-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card { flex: 1 1 calc(50% - 14px); }
+    .about-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 30px; }
+    .services-grid, .advantages-grid, .process-grid, .contact-grid { grid-template-columns: 1fr; }
+    .service-card { flex: 1 1 100%; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+    
+<!-- 导航 -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="#top" class="logo">
+      <img src="logo.png" alt="学昇汇教育 logo" class="logo-img">
+      <span class="logo-text">
+        <strong>学昇汇教育</strong>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#top">首页</a></li>
+      <li><a href="#services">业务介绍</a></li>
+      <li><a href="#advantages">核心优势</a></li>
+      <li><a href="#process">服务流程</a></li>
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#contact" class="nav-cta">联系我们</a></li>
+    </ul>
+  </div>
+</header>
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-badge">专注学历提升 · 自考 · 成考</div>
+      <h1>让学历提升<br>成为你<em>职场进阶</em>的<span class="accent">新起点</span></h1>
+      <p class="hero-desc">
+        学昇汇教育深耕成人学历教育领域，覆盖高起专、专升本等学历层次，提供自学考试（自考）、成人高考（成考）等学历提升方案，
+        以专业指导与全程服务，助你稳步迈向更高学历与更好的自己。
+      </p>
+      <div class="hero-actions">
+        <a href="#follow" class="btn btn-primary">扫码免费咨询学历提升 →</a>
+        <a href="#services" class="btn btn-outline">了解报考方案</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>10+</b><span>年行业经验</span></div>
+        <div class="stat"><b>20000+</b><span>服务学员</span></div>
+        <div class="stat"><b>98%</b><span>学员满意度</span></div>
+      </div>
+    </div>
+    <div class="hero-card" id="follow">
+      <h3>关注公众号 · 领取学历提升方案</h3>
+      <p class="sub">无需填写表单，扫码关注后留言即可，规划老师 24 小时内一对一回复</p>
+      <div class="qr-box">
+        <img src="weixinsouyisou.png" alt="学昇汇教育微信公众号二维码">
+      </div>
+      <ol class="qr-steps">
+        <li><span>1</span>微信扫码，关注公众号「<b>学昇汇教育</b>」</li>
+        <li><span>2</span>后台留言：姓名 + 联系电话 + 意向方式（自考 / 成考）</li>
+        <li><span>3</span>规划老师主动联系你，免费定制报考方案</li>
+      </ol>
+      <p class="form-note">信息仅用于学历咨询，我们将严格保密</p>
+    </div>
+  </div>
+</section>
+<!-- 业务介绍 -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Our Services</div>
+      <h2>学历提升主营业务</h2>
+      <p>覆盖高起专、专升本等学历层次，围绕自考、成考提供专业、可靠、可落地的报考与学习服务</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏫</div>
+        <h3>高起专（高中 / 中专 → 专科）</h3>
+        <p>面向高中、中专、职高及同等学力学员，从零起步直升专科。可选成人高考或自学考试两种路径，边工作边学习，毕业获取国家承认、学信网可查的大专学历。</p>
+        <div class="tags"><span>高中 / 中专起点</span><span>成考 · 自考</span><span>学信网可查</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <h3>专升本（专科 → 本科）</h3>
+        <p>面向应届及往届专科学员，报考本科层次学历。支持函授、业余、自学考试等多种学习形式，本科毕业符合条件可申请学士学位，助力职场晋升与考研考公。</p>
+        <div class="tags"><span>专科起点</span><span>函授 · 自考</span><span>可授学位</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📚</div>
+        <h3>自学考试（自考）</h3>
+        <p>无入学门槛、学习方式灵活，考试通过即可申请毕业，含金量高，适合有自主学习能力的学员。</p>
+        <div class="tags"><span>专科</span><span>本科</span><span>灵活学习</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <h3>成人高考（成考）</h3>
+        <p>入学考试相对稳定，录取率高，学习形式多样，适合希望系统学习、稳妥拿证的学员。</p>
+        <div class="tags"><span>专科</span><span>本科</span><span>函授</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧭</div>
+        <h3>学历提升定制规划</h3>
+        <p>根据学历基础、目标与时间规划，量身定制自考 / 成考方案，全程跟踪辅导直至顺利毕业。</p>
+        <div class="tags"><span>一对一</span><span>全程服务</span><span>规划</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 核心优势 -->
+<section class="advantages" id="advantages">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Why Choose Us</div>
+      <h2>为什么选择学昇汇教育</h2>
+    </div>
+    <div class="advantages-grid">
+      <div class="advantage">
+        <div class="advantage-icon">🏛️</div>
+        <h3>正规资质</h3>
+        <p>正规教育科技公司，资质齐全，服务有保障</p>
+      </div>
+      <div class="advantage">
+        <div class="advantage-icon">🤝</div>
+        <h3>专业团队</h3>
+        <p>资深规划老师一对一指导，全程答疑解惑</p>
+      </div>
+      <div class="advantage">
+        <div class="advantage-icon">📈</div>
+        <h3>高通过率</h3>
+        <p>系统课程与备考辅导，助力学员高效拿证</p>
+      </div>
+      <div class="advantage">
+        <div class="advantage-icon">🛡️</div>
+        <h3>全程服务</h3>
+        <p>从报名到毕业全程跟进，省心省力更安心</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 服务流程 -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Process</div>
+      <h2>清晰透明的服务流程</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <h3>免费咨询</h3>
+        <p>了解您的学历现状与提升目标</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <h3>方案定制</h3>
+        <p>顾问老师为您量身规划报考路径</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <h3>报名备考</h3>
+        <p>协助报名，提供课程与复习指导</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <h3>毕业拿证</h3>
+        <p>全程跟进，直至学籍与学历到手</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 关于我们 -->
+<section class="about" id="about">
+  <div class="container about-inner">
+    <div class="about-text">
+      <div class="tag">About Us</div>
+      <h2>关于学昇汇教育</h2>
+      <p>北京学昇汇教育科技有限公司（简称「学昇汇教育」）是一家专注成人学历提升的教育科技企业。</p>
+      <p>我们始终以学员需求为中心，深耕自学考试（自考）与成人高考（成考）两大领域，通过专业的咨询规划、科学的学习辅导和贴心的全程陪伴，帮助每一位学员高效实现学历跃升。</p>
+      <ul class="about-points">
+        <li>深耕学历提升领域，专业师资与服务体系成熟</li>
+        <li>坚持透明化服务，让学员每一步都清晰、安心</li>
+        <li>覆盖自考、成考等多种学历提升方式</li>
+      </ul>
+    </div>
+    <div class="about-visual">
+      <h3>学昇汇教育</h3>
+      <!-- <div class="company">北京学昇汇教育科技有限公司</div> -->
+      <p class="quote">
+        "让学习成为向上升腾的力量，助力每一位追梦者，通过学历提升走向更广阔的未来。"
+      </p>
+    </div>
+  </div>
+</section>
+<!-- 联系我们 -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Contact Us</div>
+      <h2>联系我们</h2>
+      <p>通过以下渠道获取免费学历提升咨询与专业指导</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h3>微信公众号</h3>
+        <p class="em">学昇汇教育</p>
+        <p>扫码关注公众号，后台留言「姓名 + 电话 + 意向方式」，老师主动联系你</p>
+        <img src="qrcode.jpg" alt="学昇汇教育公众号二维码" class="contact-qr">
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📕</div>
+        <h3>小红书</h3>
+        <p class="em">学昇汇教育</p>
+        <p>关注账号，学习备考干货分享</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="学昇汇教育 logo" class="footer-logo">
+        <h3>学昇汇教育</h3>
+        <p>专注成人学历提升，提供自考、成考等专业咨询与全程服务，助力每一位学员实现学历梦想。</p>
+      </div>
+      <div>
+        <h4>主营业务</h4>
+        <ul>
+          <li><a href="#services">高起专（高中 → 专科）</a></li>
+          <li><a href="#services">专升本（专科 → 本科）</a></li>
+          <li><a href="#services">自学考试（自考）</a></li>
+          <li><a href="#services">成人高考（成考）</a></li>
+          <li><a href="#services">学历提升定制规划</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li>微信公众号：学昇汇教育</li>
+          <li><a href="#follow">扫码关注 · 留言咨询</a></li>
+          <li>小红书：学昇汇教育</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      北京学昇汇教育科技有限公司 · 学昇汇教育 — 学历提升 · 自考 · 成考
+    </div>
+  </div>
+</footer>
+<script>
+  // 导航滚动阴影
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+</script>
+</body>
+</html>
